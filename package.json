@@ -1,0 +1,23 @@
+{
+  "name": "@funnelbranch/funnelbranch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/funnelbranch/funnelbranch-npm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/funnelbranch/funnelbranch-npm/issues"
+  },
+  "homepage": "https://github.com/funnelbranch/funnelbranch-npm#readme",
+  "devDependencies": {
+    "typescript": "^4.1.3"
+  }
+}
