@@ -3,6 +3,7 @@ import { loadScript } from './loadScript';
 const FUNNELBRANCH_WINDOW_VARIABLE = 'Funnelbranch';
 
 interface FunnelbranchWindowClass {
+  scriptVersion(): string;
   initialize(projectId: string, options: Options): FunnelbranchWindowInstance;
 }
 
@@ -19,13 +20,21 @@ type Options = {
 };
 
 export class Funnelbranch {
+  public static scriptVersion(): Promise<string> {
+    return this.loadScript()
+      .then(() => ((window as any)[FUNNELBRANCH_WINDOW_VARIABLE] as FunnelbranchWindowClass).scriptVersion())
+      .catch((err) => {
+        console.error(err);
+        throw err;
+      });
+  }
+
   public static initialize(projectId: string, options = {} as Options): Promise<Funnelbranch> {
-    return loadScript()
+    return this.loadScript()
       .then(() => {
-        if (FUNNELBRANCH_WINDOW_VARIABLE in window) {
-          return this.initializeFromWindowClass(projectId, options);
-        }
-        throw new Error(`Funnelbranch: failed to access '${FUNNELBRANCH_WINDOW_VARIABLE}' window variable`);
+        const Class = (window as any)[FUNNELBRANCH_WINDOW_VARIABLE] as FunnelbranchWindowClass;
+        const instance = Class.initialize(projectId, options);
+        return new Funnelbranch(instance);
       })
       .catch((err) => {
         console.error(err);
@@ -33,10 +42,15 @@ export class Funnelbranch {
       });
   }
 
-  private static initializeFromWindowClass(projectId: string, options: Options): Funnelbranch {
-    const WindowClass = (window as any)[FUNNELBRANCH_WINDOW_VARIABLE] as FunnelbranchWindowClass;
-    const windowInstance = WindowClass.initialize(projectId, options);
-    return new Funnelbranch(windowInstance);
+  private static loadScript(): Promise<void> {
+    if (FUNNELBRANCH_WINDOW_VARIABLE in window) {
+      return Promise.resolve();
+    }
+    return loadScript().then(() => {
+      if (!(FUNNELBRANCH_WINDOW_VARIABLE in window)) {
+        throw new Error(`Funnelbranch: failed to access '${FUNNELBRANCH_WINDOW_VARIABLE}' window variable`);
+      }
+    });
   }
 
   private constructor(private readonly delegate: FunnelbranchWindowInstance) {}
