@@ -1,8 +1,11 @@
 {
   "name": "@funnelbranch/funnelbranch",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "build/index.js",
   "types": "build/index.d.ts",
+  "files": [
+    "/build"
+  ],
   "scripts": {
     "build": "webpack --mode production"
   },
