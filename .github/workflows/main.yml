@@ -1,4 +1,10 @@
-on: push
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '**'
 
 jobs:
   build-and-publish:
@@ -6,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      - name: Checkout
         uses: actions/checkout@v2
 
       - name: 'Setup Node'
@@ -20,9 +26,8 @@ jobs:
       - name: 'Build'
         run: yarn build
 
-      # https://blog.npmjs.org/post/118393368555/deploying-with-npm-private-modules
-      # https://stackoverflow.com/a/54672422
       - name: 'Publish to NPM'
+        if: ${{ github.ref == 'refs/heads/main' }}
         run: |
           npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
           npm publish --access public

@@ -1,5 +1,7 @@
 import { loadScript } from './loadScript';
 
+declare const BUILD_PACKAGE_VERSION: string;
+
 const FUNNELBRANCH_WINDOW_VARIABLE = 'Funnelbranch';
 
 interface FunnelbranchWindowClass {
@@ -12,7 +14,7 @@ interface FunnelbranchWindowInstance {
   destroy(): void;
 }
 
-type Options = {
+export type Options = {
   controlGroup?: string;
   enableLocalhost?: boolean;
   trackClientUrlChanges?: boolean;
@@ -20,6 +22,10 @@ type Options = {
 };
 
 export class Funnelbranch {
+  public static npmPackageVersion(): string {
+    return BUILD_PACKAGE_VERSION;
+  }
+
   public static scriptVersion(): Promise<string> {
     return this.loadScript()
       .then(() => ((window as any)[FUNNELBRANCH_WINDOW_VARIABLE] as FunnelbranchWindowClass).scriptVersion())
@@ -33,7 +39,10 @@ export class Funnelbranch {
     return this.loadScript()
       .then(() => {
         const Class = (window as any)[FUNNELBRANCH_WINDOW_VARIABLE] as FunnelbranchWindowClass;
-        const instance = Class.initialize(projectId, options);
+        const instance = Class.initialize(
+          projectId,
+          Object.assign({}, options, { __extraHeaders: Object.assign({}, (options as any).__extraHeaders, { 'NPM-Package-Version': BUILD_PACKAGE_VERSION }) })
+        );
         return new Funnelbranch(instance);
       })
       .catch((err) => {

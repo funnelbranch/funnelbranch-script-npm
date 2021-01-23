@@ -1,14 +1,13 @@
 {
   "compilerOptions": {
+    "module": "CommonJS",
     "outDir": "./build/",
-    "module": "es6",
-    "target": "es6",
-    "declaration": true /* Generates corresponding '.d.ts' file. */,
+    "declaration": true,
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "build/**/*", "**/*.spec.ts"]
+  "exclude": ["node_modules", "build/**/*"]
 }
