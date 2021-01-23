@@ -4,7 +4,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const packageDotJson = require('./package.json');
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: {
+    index: './src/index.ts',
+  },
   module: {
     rules: [
       {
@@ -21,6 +23,9 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'index.js',
+    libraryTarget: 'umd',
+    globalObject: 'this',
+    umdNamedDefine: true,
   },
   optimization: {
     minimize: false,

@@ -3,6 +3,9 @@
   "version": "1.0.4",
   "main": "build/index.js",
   "types": "build/index.d.ts",
+  "files": [
+    "/build"
+  ],
   "scripts": {
     "build": "webpack --mode production"
   },
