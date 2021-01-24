@@ -1,7 +1,9 @@
 import { loadScript } from './loadScript';
 
+// Config
 declare const BUILD_PACKAGE_VERSION: string;
 
+// Window Script
 const FUNNELBRANCH_WINDOW_VARIABLE = 'Funnelbranch';
 
 interface FunnelbranchWindowClass {
@@ -14,18 +16,16 @@ interface FunnelbranchWindowInstance {
   destroy(): void;
 }
 
+// Options
 export type Options = {
-  controlGroup?: string;
+  controlGroup?: 'A' | 'B';
   enableLocalhost?: boolean;
   trackClientUrlChanges?: boolean;
   trackClientHashChanges?: boolean;
 };
 
-export class Funnelbranch {
-  public static npmPackageVersion(): string {
-    return BUILD_PACKAGE_VERSION;
-  }
-
+// Service
+export default class Funnelbranch {
   public static scriptVersion(): Promise<string> {
     return this.loadScript()
       .then(() => ((window as any)[FUNNELBRANCH_WINDOW_VARIABLE] as FunnelbranchWindowClass).scriptVersion())
@@ -57,7 +57,7 @@ export class Funnelbranch {
     }
     return loadScript().then(() => {
       if (!(FUNNELBRANCH_WINDOW_VARIABLE in window)) {
-        throw new Error(`Funnelbranch: failed to access '${FUNNELBRANCH_WINDOW_VARIABLE}' window variable`);
+        throw new Error('Funnelbranch: failed to access window variable');
       }
     });
   }

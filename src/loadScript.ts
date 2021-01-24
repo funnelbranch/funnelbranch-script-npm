@@ -12,11 +12,8 @@ export function loadScript(): Promise<void> {
   });
 }
 
-function findScript(): HTMLScriptElement | undefined {
-  const scripts = document.querySelectorAll<HTMLScriptElement>(`script[src="${FUNNELBRANCH_SCRIPT_URL}"]`);
-  if (scripts.length > 0) {
-    return scripts[0];
-  }
+function findScript(): HTMLScriptElement | null {
+  return document.querySelector<HTMLScriptElement>(`script[src^="${FUNNELBRANCH_SCRIPT_URL}"]`);
 }
 
 function injectScript(): HTMLScriptElement {
