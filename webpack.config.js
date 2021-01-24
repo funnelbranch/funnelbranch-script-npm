@@ -3,8 +3,8 @@ const { DefinePlugin } = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const packageDotJson = require('./package.json');
 
-// https://medium.com/@jdxcode/for-the-love-of-god-dont-use-npmignore-f93c08909d8d
 // https://itnext.io/how-to-build-and-publish-npm-packages-with-webpack-dea19bb14627
+// https://medium.com/@jdxcode/for-the-love-of-god-dont-use-npmignore-f93c08909d8d
 module.exports = {
   entry: {
     index: './src/index.ts',
@@ -25,6 +25,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'index.js',
+    library: 'Funnelbranch',
     libraryTarget: 'umd',
     globalObject: 'this',
     umdNamedDefine: true,
