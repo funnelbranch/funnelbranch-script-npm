@@ -1,6 +1,6 @@
-# Funnelbranch NPM Script Wrapper
+# Funnelbranch Script NPM
 
-This is the official source code repository for the NPM [`funnelbranch.js`](https://github.com/funnelbranch/funnelbranch-script) script wrapper, made suitable for SPA frameworks like React and Angular.
+This is the official source code repository for the NPM [Funnelbranch script](https://github.com/funnelbranch/funnelbranch-script) wrapper, made suitable for SPA frameworks like React and Angular.
 
 For more information, please visit [www.funnelbranch.com](https://www.funnelbranch.com).
 
@@ -9,17 +9,15 @@ For more information, please visit [www.funnelbranch.com](https://www.funnelbran
 Install the NPM package via `yarn` or `npm`.
 
 ```
-yarn add @funnelbranch/funnelbranch
+yarn add @funnelbranch/script
 
-npm install @funnelbranch/funnelbranch
+npm install @funnelbranch/script
 ```
 
 ## Usage
 
-Check the following code sample on how to load the `funnelbranch.js` script.
-
 ```ts
-import { Funnelbranch } from '@funnelbranch/funnelbranch';
+import { Funnelbranch } from '@funnelbranch/script';
 
 Funnelbranch.initialize('<PROJECT_ID'>)
   .then(funnelbranch => {
