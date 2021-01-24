@@ -11,13 +11,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/funnelbranch/funnelbranch-npm.git"
+    "url": "git+https://github.com/funnelbranch/funnelbranch-script-npm.git"
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/funnelbranch/funnelbranch-npm/issues"
+    "url": "https://github.com/funnelbranch/funnelbranch-script-npm/issues"
   },
-  "homepage": "https://github.com/funnelbranch/funnelbranch-npm#readme",
+  "homepage": "https://github.com/funnelbranch/funnelbranch-script-npm#readme",
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
     "ts-loader": "^8.0.14",
