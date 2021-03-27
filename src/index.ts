@@ -12,7 +12,7 @@ interface FunnelbranchWindowClass {
 }
 
 interface FunnelbranchWindowInstance {
-  submitEvent(event?: string): void;
+  submitAction(action?: string): void;
   destroy(): void;
 }
 
@@ -41,7 +41,11 @@ export default class Funnelbranch {
         const Class = (window as any)[FUNNELBRANCH_WINDOW_VARIABLE] as FunnelbranchWindowClass;
         const instance = Class.initialize(
           projectId,
-          Object.assign({}, options, { __extraHeaders: Object.assign({}, (options as any).__extraHeaders, { 'NPM-Package-Version': BUILD_PACKAGE_VERSION }) })
+          Object.assign({}, options, {
+            __extraHeaders: Object.assign({}, (options as any).__extraHeaders, {
+              'NPM-Package-Version': BUILD_PACKAGE_VERSION,
+            }),
+          })
         );
         return new Funnelbranch(instance);
       })
@@ -64,8 +68,8 @@ export default class Funnelbranch {
 
   private constructor(private readonly delegate: FunnelbranchWindowInstance) {}
 
-  public submitEvent(event?: string): void {
-    return this.delegate.submitEvent(event);
+  public submitAction(action?: string): void {
+    return this.delegate.submitAction(action);
   }
 
   public destroy(): void {
