@@ -1,6 +1,6 @@
 # Funnelbranch Script NPM
 
-This is the official source code repository for the NPM [Funnelbranch Script](https://github.com/funnelbranch/funnelbranch-script) wrapper, made suitable for SPA frameworks like React and Angular.
+This is the official source code repository for the [Funnelbranch Script Wrapper](https://github.com/funnelbranch/funnelbranch-script) module, made suitable for SPA frameworks like React and Angular.
 
 For more information, please visit [www.funnelbranch.com](https://www.funnelbranch.com).
 
