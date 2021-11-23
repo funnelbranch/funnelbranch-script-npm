@@ -19,6 +19,7 @@ interface FunnelbranchWindowInstance {
 // Options
 export type Options = {
   controlGroup?: 'A' | 'B';
+  cookieDomain?: string;
   enableLocalhost?: boolean;
   trackClientUrlChanges?: boolean;
   trackClientHashChanges?: boolean;
