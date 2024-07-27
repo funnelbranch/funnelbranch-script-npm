@@ -1,3 +1,7 @@
+# ❌ Funnelbranch has been discontinued ❌
+
+❌ The script will no longer work.
+
 # Funnelbranch Script NPM
 
 This is the official source code repository for the [funnelbranch.js](https://github.com/funnelbranch/funnelbranch-script) wrapper module, made suitable for SPA frameworks like React and Angular.
